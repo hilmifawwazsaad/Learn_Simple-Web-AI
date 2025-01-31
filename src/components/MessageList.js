@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import MessageInput from "./MessageInput";
 import Footer from "../components/Footer";
 
@@ -8,6 +9,7 @@ const MessageList = () => {
     const [messages, setMessages] = useState([
         { id: 1, text: "Halo! Ada yang bisa saya bantu?", sender: "AI" },
     ]);
+    const [selectedModel, setSelectedModel] = useState('model1');
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -34,7 +36,14 @@ const MessageList = () => {
                         {message.sender === "AI" && (
                             <div className="p-2 sm:p-3 rounded-lg bg-blue-100 dark:bg-blue-900 self-start max-w-[85%] sm:max-w-[75%] md:max-w-[70%] inline-block">
                                 <p className="text-sm sm:text-m font-bold text-gray-900 dark:text-gray-100">{message.sender}</p>
-                                <p className="text-xs sm:text-sm text-gray-900 dark:text-gray-100">{message.text}</p>
+                                <ReactMarkdown className="text-xs sm:text-sm text-gray-900 dark:text-gray-100" components={{
+                                    h2: ({ node, ...props }) => (
+                                        <h2 className="font-bold mt-6 mb-4" {...props} />
+                                    ),
+                                    p: ({ node, ...props }) => (
+                                        <p className="mb-4" {...props} />
+                                    ),
+                                }}>{message.text}</ReactMarkdown>
                             </div>
                         )}
 
@@ -50,7 +59,11 @@ const MessageList = () => {
             </div>
             <div className="fixed bottom-0 left-0 right-0 w-full px-2 sm:px-4 md:px-8 lg:px-12">
                 <div className="p-2 sm:p-4 bg-gray-100 dark:bg-gray-800">
-                    <MessageInput onSendMessage={handleSendMessage} />
+                    <MessageInput 
+                        onSendMessage={handleSendMessage} 
+                        selectedModel={selectedModel}
+                        onModelChange={setSelectedModel}
+                    />
                 </div>
                 <div className="bg-gray-100 dark:bg-gray-800">
                     <Footer />

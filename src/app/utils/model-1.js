@@ -1,3 +1,5 @@
+//gemini-2.0-flash-exp
+
 const {
     GoogleGenerativeAI,
     HarmCategory,
@@ -24,6 +26,13 @@ const generationConfig = {
     responseMimeType: "text/plain",
 };
 
+function formatResponse(text) {
+    let count = 1
+    text = text.replace(/\*\* \*/g, () => `${count++}.`);
+    text = text.replace(/\*(.*?)\*/g, "**$1**");
+    return text;
+}
+
 async function run(message) {
     try {
         const chatSession = model.startChat({
@@ -38,7 +47,9 @@ async function run(message) {
             throw new Error('Empty response from AI');
         }
         
-        return response;
+        const formattedResponse = formatResponse(response);
+        return formattedResponse;
+        // return response;
     } catch (error) {
         console.error('Error in chat service:', error);
         throw error; 
