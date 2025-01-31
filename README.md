@@ -7,7 +7,7 @@
 ## Table of Contents
 [A. English Version](#english-version)      
 
-[B. Indonesian Version](#versi-bahasa-indonesia)
+[B. Versi Bahasa Indonesia](#versi-bahasa-indonesia)
 
 # English Version
 
@@ -100,6 +100,12 @@ ollama run deepseek-r1:1.5b
 13. Everything related to Ollama in my program, you can go to the file `src/app/utils/model-2.js`
 
 > The AI model of Ollama generally runs on `http://localhost:11434`. However, since we are using the FAST API that already exists in the Ollama documentation, it uses `http://localhost:11434/api/chat`.
+
+14. Almost forgot, don't forget to install Ollama on your Next.js server with the command :
+
+```bash
+npm install ollama
+```
 
 ## Closing
 
@@ -198,6 +204,12 @@ ollama jalankan deepseek-r1:1.5b
 13. Segala sesuatu yang berhubungan dengan Ollama dalam program saya, Anda dapat membuka file `src/app/utils/model-2.js`
 
 > Model AI Ollama pada umumnya berjalan di `http://localhost:11434`. Namun, karena kita menggunakan FAST API yang sudah ada di dokumentasi Ollama, maka kita menggunakan `http://localhost:11434/api/chat`.
+
+14. Hampir lupa, jangan lupa untuk menginstall Ollama pada server Next.js anda dengan perintah :
+
+```bash
+npm install ollama
+```
 
 ## Penutup
 
